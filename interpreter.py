@@ -10,7 +10,7 @@ def injestFile(FilePath, actionBool):
             code = "new Action = ({id}, {description}, Map.of(\n".format(id=id, description=dfRaw.iloc[index].iloc[2])
             print("// {action}: ".format(action=dfRaw.iloc[index].iloc[2]))
             for x in range (3, len(dfRaw.columns)):
-                if pd.notna(row[x]):
+                if pd.notna(row.iloc[x]):
                     code += "\t\"{key}\", {value},\n".format(key=dfRaw.columns[x], value=row.iloc[x])
                 x += 1
             code += "));"
