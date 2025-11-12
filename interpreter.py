@@ -3,7 +3,6 @@ import uuid
 
 def injestFile(FilePath):
     dfRaw = pd.read_excel(FilePath)
-    id = 0
 
     for index, row in dfRaw.iterrows():
         id = uuid.uuid4()
