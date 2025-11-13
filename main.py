@@ -1,4 +1,5 @@
 import interpreter
+import output
 
 
 print("---The following program is for use with a CSC2058 Group 7 Spreadsheet.---\n")
@@ -24,5 +25,9 @@ while True:
 
 fPath = input("Please enter the file path: ")
 print("\n\n----------Outputting Maps----------\n\n\n\n\n\n")
-interpreter.injestFile(fPath, actionBool)
+out = interpreter.injestFile(fPath, actionBool)
+output.outputToText(out, fPath, actionBool)
+
+
+
 
