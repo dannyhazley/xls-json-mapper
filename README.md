@@ -11,4 +11,4 @@ Once you CD into the directory:
 $ python ./main.py
 ```
 
-Please ensure you are running Python 3.15 to run.
+Please ensure you are running Python 3.13.5, and have pandas installed to run.
