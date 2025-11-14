@@ -24,9 +24,9 @@ while True:
         action = input("Please enter \"a\" or \"e\": ")
 
 fPath = input("Please enter the file path: ")
-print("\n\n----------Outputting Maps----------\n\n\n\n\n\n")
 out = interpreter.injestFile(fPath, actionBool)
-output.outputToText(out, fPath, actionBool)
+print("Objects created.  Stored at: " + output.outputToText(out, fPath, actionBool))
+
 
 
 

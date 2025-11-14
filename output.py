@@ -15,3 +15,5 @@ def outputToText(output, filepath, action = True):
 
     with open(fName, "a") as f:
         print(output, file=f)
+
+    return fName

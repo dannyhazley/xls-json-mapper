@@ -17,7 +17,7 @@ def injestFile(FilePath, actionBool):
             output += "));"
             output += "\n\n//----------------------\n\n"
         else:
-            output += "{enum}(\"{description}\", Map.of(\n".format(enum=dfRaw.iloc[index].iloc[0].to_string().upper(), description=dfRaw.iloc[index].iloc[1])
+            output += "{enum}(\"{description}\", Map.of(\n".format(enum=dfRaw.iloc[index].iloc[0].to_string().upper().replace(" ", "_"), description=dfRaw.iloc[index].iloc[1])
             output += "// {enum}: ".format(enum=dfRaw.iloc[index].iloc[0].to_string().upper())
             for x in range (2, len(dfRaw.columns)):
                 if pd.notna(row[x]):
