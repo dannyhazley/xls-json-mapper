@@ -4,17 +4,26 @@ import uuid
 def injestFile(FilePath, actionBool):
     dfRaw = pd.read_excel(FilePath)
 
+    #id = uuid.uuid4()
+    id = 0
     output = ""
     for index, row in dfRaw.iterrows():
+        id += 1
         if actionBool:
-            id = uuid.uuid4()
             output += "// {action}: \n".format(action=dfRaw.iloc[index].iloc[2])
-            output += "new Action = ({id}, {description}, Map.of(\n".format(id=id, description=dfRaw.iloc[index].iloc[2])
-            for x in range (3, len(dfRaw.columns)):
+            output += "TempList.add(new Action({id}, \"{description}\", Map.ofEntries(\n".format(id=id, description=dfRaw.iloc[index].iloc[2])
+            lines = []
+            for x in range(3, len(dfRaw.columns)):
                 if pd.notna(row.iloc[x]):
-                    output += "\t\"{key}\", {value},\n".format(key=dfRaw.columns[x], value=row.iloc[x])
-                x += 1
-            output += "));"
+                    val = row.iloc[x]
+                    val = int(val) if isinstance(val, float) and val.is_integer() else val
+
+                    lines.append("\tMap.entry(\"{key}\", {value})".format(
+                        key=dfRaw.columns[x],
+                        value=val
+                    ))
+            output += ",\n".join(lines) + "\n"
+            output += ")));"
             output += "\n\n//----------------------\n\n"
         else:
             output += "// {enum}: \n".format(enum=dfRaw.iloc[index].iloc[0].upper())
